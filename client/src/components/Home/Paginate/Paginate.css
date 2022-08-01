@@ -1,0 +1,52 @@
+
+.paginate{
+    margin-top: 200px;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-spacing: transparent 5px;
+    text-shadow: 5px 10px;
+}
+
+
+.numero {
+    text-shadow: 0 0 0.3em rgb(5, 5, 5), 0 0 0.2em rgb(5, 5, 5);
+    flex-direction: row;
+    align-items: center;
+    margin-top: -120px;
+    color: aqua;
+    background-color: transparent;
+    border: solid 9px rgb(255, 255, 255);
+    text-shadow: rgb(0, 0, 0);
+    margin-left: 50px;
+    padding-right: solid 7px #000;
+    padding-left: solid 7px #000;
+    border-right: solid 7px #000;
+    border-left: solid 7px #000;
+    /* transition: border .5s, .5s; */
+}
+
+.numero:hover {
+    cursor: pointer;
+    /* border-right: solid 1px #000; */
+    /* border-left: solid 1px #000; */
+    /* border-top:solid 120px aqua; */
+    color: rgb(255, 255, 255);
+} 
+
+.numero:focus{
+    background-color: transparent;
+    color: red;
+    text-shadow: 0 0 0.3em rgb(5, 5, 5), 0 0 0.2em rgb(5, 5, 5);
+    border-top-color: red;
+    border-bottom-color: red;
+}
+
+/* .numero:hover:focus{
+    background-color: rgb(0, 0, 0);
+    color: red;
+    text-shadow: 0 0 0.3em rgb(5, 5, 5), 0 0 0.2em rgb(5, 5, 5);
+    border-top-color: red;
+    border-bottom-color: rgb(255, 0, 0);
+} */

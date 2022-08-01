@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+
+.gohome{
+    font-family: 'Play', sans-serif;
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 0;
+    padding: 0;
+    font-size: 1.5em;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 0 0.5em #000;
+    background: #000;
+    border-radius: 0.5em;
+    box-shadow: 0 0 0.5em #000;
+    padding: 0.5em 1em;
+    opacity: 0.5;
+    transition: 0.7s;
+}
+
+.gohome:hover{
+    opacity: 1;
+    color: aqua;
+    cursor: pointer;
+}
+
+.form-title {
+    margin-top: 10px;
+    flex-direction: row;
+    transition-duration: .5s;
+    transition-delay: 8ms;
+    cursor: default;
+}
+
+.form-title:hover{
+    color:aqua;
+    text-decoration: underline;
+}
+
+.ltypes {
+    margin-right: 700px;
+    color: white;
+}
+
+.types {
+    margin-right: 700px;
+    justify-items: left;
+    align-items: left;
+    flex-direction: start;
+}
+
+.nameInput{
+    margin-top: -40px;
+}
+
+.lname{
+    font-size: 22px;
+    color: white;
+}
+.ldescription{
+    display: flex;
+    margin-left: 420px;
+    margin-bottom: -17px;
+}
+
+.textarea{
+    resize:none;
+    width:300px;
+    padding-bottom: 90px;
+}
+
+.image2{
+    color: white;
+}
+
+.limage2{
+    color:white;
+    flex: center;
+}
+
+.lrating{
+    color: white;
+}
+
+.lreleased{
+    color: white;
+}
+
+.ldescription{
+    color: white;
+    margin-top: -20px
+
+}
+
+.lplatforms{
+    color: white;
+    margin-top: -410px;
+    margin-left: 637px;
+    display: flex;
+    flex-direction: row;
+}
+
+.button2{
+    margin-top: 50px;
+}
+
+.button2:hover{
+    background-color: #000;
+    color: white;
+    cursor: pointer;
+    border: aqua solid 3px;
+}
+

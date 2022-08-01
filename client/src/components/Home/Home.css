@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+
+body{
+    background-image: center;
+    margin-left: 0px;
+    margin-right: 0px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: cover;
+    font-family: 'Play', sans-serif;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    text-shadow: 0 0 0.2em rgb(37, 110, 179), 0 0 0.2em rgb(255, 255, 255);
+    background-position-x: cover;
+}
+
+.back{
+    font-size: 17px;
+    padding-top: 20px;
+    position: flex;
+    flex-wrap:wrap;
+    flex-direction: row;
+    /* margin-bottom: -90px; */
+    margin-top: 20px;
+    margin-left: -875px;
+    color:black;
+    transition: color 0.5s ease;
+}
+
+.back:hover{
+    text-decoration: underline;
+    color: aqua;
+}
+
+.order{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.link {
+    color:rgb(0, 0, 0);
+    font-size:15px;
+    text-decoration: none;
+};
+
+.created{
+    text-shadow: none;
+}
+
+.created:hover{
+    text-shadow: none;
+}
+
+.filters {
+    flex-wrap: wrap;
+    flex-direction: row;
+    
+}
+
+.load{
+    width: 10%;
+    height: 50%;
+}
