@@ -48,8 +48,6 @@ export default function Card({image, name, types, HP, attack, defense, speed, he
             </div>
                 <div>{id.length > 10 ? <button onClick={e => handleClick(e, id)}>Free this Pokémon</button>: null}
                 </div>
-                <div>{id.length > 10 ? <button onClick={e => handleClick(e, id)}>Update information of this Pokémon</button>: null}
-                </div>
         </div>
     )
 }

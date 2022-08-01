@@ -1,12 +1,8 @@
 import React from "react";
 import "./Paginate.css";
 
-export default function Paginated({
-  pokemonsPerPage,
-  allPokemons,
-  paginate,
-  currentPage,
-}) {
+export default function Paginated({pokemonsPerPage, allPokemons, paginate, currentPage,}) {
+    
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(allPokemons.length / pokemonsPerPage); i++) {
     pageNumbers.push(i);

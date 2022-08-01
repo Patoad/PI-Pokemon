@@ -9,58 +9,58 @@ const url = `https://pokeapi.co/api/v2/pokemon`;
 
 
 
-const getApiInfo = async () => {
-    const pokeRequest1 = await axios.get(url);
-    const pokeRequest2 = await axios.get(pokeRequest1.data.next);
-    const allRequest = pokeRequest1.data.results.concat(
-      pokeRequest2.data.results
-    );
-    const promises = allRequest.map((e) => axios.get(e.url));
-    const allData = await Promise.all(promises);
-    return allData.map((e) => {
-      return {
-        id: e.data.id,
-        name: e.data.name,
-        hp: e.data.stats[0]["base_stat"],
-        attack: e.data.stats[1]["base_stat"],
-        defense: e.data.stats[2]["base_stat"],
-        speed: e.data.stats[5]["base_stat"],
-        height: e.data.height,
-        weight: e.data.weight,
-        image: e.data.sprites.other.home.front_default,
-        types: e.data.types.map((e) => e.type.name),
-      };
-    });
-  };
-
-
 // const getApiInfo = async () => {
-//     try {
-//         const pokeRequest1 = await axios.get(url);
-//         const pokeRequest2 = await axios.get(pokeRequest1.data.next);
-//         const allRequest = pokeRequest1.data.results.concat(pokeRequest2.data.results);
-//         const promises = allRequest.map(e => axios.get(e.url));
-//         const allData = await Promise.all(promises);
-//         const pokeData = await allData.map((e) => {
-//             return {
-//                 id: e.data.id,
-//                 name: e.data.name,
-//                 hp: e.data.stats[0]["base_stat"],
-//                 attack: e.data.stats[1]["base_stat"],
-//                 defense: e.data.stats[2]["base_stat"],
-//                 speed: e.data.stats[5]["base_stat"],
-//                 height: e.data.height,
-//                 weight: e.data.weight,
-//                 image: e.data.sprites.other.home.front_default,
-//                 types: e.data.types.map(e => e.type.name),
-//                 created: false,
-//             };
-//         })
-//         return pokeData;
-//     } catch (error) {
-//         console.log(error)
-//     };
-// };
+//     const pokeRequest1 = await axios.get(url);
+//     const pokeRequest2 = await axios.get(pokeRequest1.data.next);
+//     const allRequest = pokeRequest1.data.results.concat(
+//       pokeRequest2.data.results
+//     );
+//     const promises = allRequest.map((e) => axios.get(e.url));
+//     const allData = await Promise.all(promises);
+//     return allData.map((e) => {
+//       return {
+//         id: e.data.id,
+//         name: e.data.name,
+//         hp: e.data.stats[0]["base_stat"],
+//         attack: e.data.stats[1]["base_stat"],
+//         defense: e.data.stats[2]["base_stat"],
+//         speed: e.data.stats[5]["base_stat"],
+//         height: e.data.height,
+//         weight: e.data.weight,
+//         image: e.data.sprites.other.home.front_default,
+//         types: e.data.types.map((e) => e.type.name),
+//       };
+//     });
+//   };
+
+
+const getApiInfo = async () => {
+    try {
+        const pokeRequest1 = await axios.get(url);
+        const pokeRequest2 = await axios.get(pokeRequest1.data.next);
+        const allRequest = pokeRequest1.data.results.concat(pokeRequest2.data.results);
+        const promises = allRequest.map(e => axios.get(e.url));
+        const allData = await Promise.all(promises);
+        const pokeData = await allData.map((e) => {
+            return {
+                id: e.data.id,
+                name: e.data.name,
+                hp: e.data.stats[0]["base_stat"],
+                attack: e.data.stats[1]["base_stat"],
+                defense: e.data.stats[2]["base_stat"],
+                speed: e.data.stats[5]["base_stat"],
+                height: e.data.height,
+                weight: e.data.weight,
+                image: e.data.sprites.other.home.front_default,
+                types: e.data.types.map(e => e.type.name),
+                created: false,
+            };
+        })
+        return pokeData;
+    } catch (error) {
+        console.log(error)
+    };
+};
 
 
 const getDbInfo = async () => {    
@@ -199,7 +199,7 @@ router.get("/", async (req, res) => {
       );
       pokemons.length
         ? res.status(200).send(pokemonsName)
-        : res.status(404).send("No pokemons found");
+        : res.status(404).send("The pokemon you're looking for does not exist... yet");
     } else {
       res.status(200).send(pokemons);
     }
