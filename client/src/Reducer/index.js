@@ -163,6 +163,14 @@ export default function rootReducer(state= initialState, action){
                 pokemons: state.pokemons.filter(e => e.id !== action.payload),
                 allPokemons: state.allPokemons.filter(e => e.id !== action.payload)
             }
+
+        // case "UPDATE_POKEMON":
+        //     return {
+        //         ...state,
+        //         pokemons: state.pokemons.filter(e => e.id !== action.payload),
+        //         allPokemons: state.allPokemons.filter(e => e.id !== action.payload)
+        //     }
+
         default:
             return state;
     }

@@ -35,6 +35,7 @@ export default function Home(){
         setCurrentPage(1);
     }
 
+
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     };

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from 'react';
 import { getTypes, getPokemons, postPokemon } from "../../Actions";
 import { Link, useHistory } from "react-router-dom";
-// import './Form.css';
+// import './UpdateForm.css';
 
 
 
@@ -123,7 +123,7 @@ export default function Form(){
     const handleSubmit = async (e) => {
         e.preventDefault()
         dispatch(postPokemon(input))
-        alert(`A new pokemon has been born! It's name is ${input.name}`)
+        alert(`A new pokemon has been born! It's name is} ${input.name}`)
         setInput({
             name: "",
             types: [],

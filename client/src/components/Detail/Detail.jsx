@@ -11,7 +11,7 @@ export default function Detail(){
     const details = useSelector(state => state.details)
     console.log(details)
 
-    const { name, types, image, hp, attack, defense, speed, height, weight} = details
+    const { name, types, image, hp, attack, defense, speed, height, weight } = details
     useEffect(() => {
         dispatch(getPokemonById(id))
     }, [dispatch, id]);
@@ -36,7 +36,7 @@ export default function Detail(){
                         return (
                             <div key={e.name}>
                                 <span>
-                                {e.name}
+                                {e.name[0].toUpperCase() + e.name.slice(1)}
                                 </span>
                             </div>
                         )
@@ -52,27 +52,6 @@ export default function Detail(){
             <h2>Speed: {speed}</h2>
             <h2>height: {height}</h2> 
             <h2>weight: {weight}</h2> 
-            {/* <h2> Platforms: 
-            {platforms?.map(e => {
-                    if(typeof(e) === 'string'){
-                        return (
-                        <p key={e}>
-                            <span className="type">
-                                {e.replace(e[0], e[0].toUpperCase())}
-                            </span>
-                        </p>
-                    )}
-                    else{
-                        return (
-                            <div key={e.name}>
-                                <span>
-                                {e.name}
-                                </span>
-                            </div>
-                        )
-                    }
-                })}
-            </h2> */}
         </div>) : <div>
             <img src={`https://dribbble.com/shots/2835314-Pokeball-Animation`} alt='wait... please...' />
         </div>}

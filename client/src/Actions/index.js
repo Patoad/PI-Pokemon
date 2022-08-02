@@ -23,8 +23,8 @@ export function getPokemonByNames(name){
                 payload: json.data
             })
         }catch(e){
-            console.log(e)
             alert("Pokemon not found")
+            console.log(e)
         }
     }
 }
@@ -127,8 +127,16 @@ export function deletePokemon(id) {
     return async function(dispatch){
         await axios.delete(`http://localhost:3001/pokemons/${id}`)
         dispatch({type: "DELETE_POKEMON", payload: id})
+        getPokemons()(dispatch)
     }
 }
+
+// export function deletePokemon(id) {
+//     return async function(dispatch){
+//         await axios.update(`http://localhost:3001/pokemons/${id}`)
+//         dispatch({type: "UPDATE_POKEMON", payload: id})
+//     }
+// }
 
 export function reset_pokemons(){
     return{
