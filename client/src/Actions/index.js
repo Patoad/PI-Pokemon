@@ -85,26 +85,6 @@ export function orderByAttack(payload){
     }
 };
 
-export function orderByDefense(payload){
-    return {
-        type: "ORDER_BY_DEFENSE",
-        payload
-    }
-};
-
-export function orderByHP(payload){
-    return {
-        type: "ORDER_BY_HP",
-        payload
-    }
-};
-
-export function orderBySpeed(payload){
-    return {
-        type: "ORDER_BY_SPEED",
-        payload
-    }
-};
 
 export function createPokemon(pokemon){
     return async function(){
@@ -130,13 +110,6 @@ export function deletePokemon(id) {
         getPokemons()(dispatch)
     }
 }
-
-// export function deletePokemon(id) {
-//     return async function(dispatch){
-//         await axios.update(`http://localhost:3001/pokemons/${id}`)
-//         dispatch({type: "UPDATE_POKEMON", payload: id})
-//     }
-// }
 
 export function reset_pokemons(){
     return{

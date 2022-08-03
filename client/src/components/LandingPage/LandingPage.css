@@ -11,7 +11,7 @@ body{
 .h1{
     font-size: 60px;
     color: rgb(255, 255, 255);
-    margin-left: 320px;
+    margin-left: 328px;
     box-sizing: content-box;
     transition-duration: .5s;
     transition-delay: 8ms;
@@ -19,8 +19,8 @@ body{
 }
 
 .h1:hover{
-    color: rgb(255, 0, 0);
     text-shadow: 0 0 0.2em rgb(0, 0, 0), 0 0 0.6em rgb(255, 255, 255);
+    cursor: default;
 }
 
 *, *:before, *:after {

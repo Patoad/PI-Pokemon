@@ -20,7 +20,6 @@ body{
     position: flex;
     flex-wrap:wrap;
     flex-direction: row;
-    /* margin-bottom: -90px; */
     margin-top: 20px;
     margin-left: -875px;
     color:black;
@@ -43,14 +42,6 @@ body{
     font-size:15px;
     text-decoration: none;
 };
-
-.created{
-    text-shadow: none;
-}
-
-.created:hover{
-    text-shadow: none;
-}
 
 .filters {
     flex-wrap: wrap;

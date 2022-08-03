@@ -10,7 +10,6 @@ function validate(input){
     let noEmpty = /\S+/;
     let validateName = /^.{3,20}$/;
     let errors = {};
-    let validateLength = /^.{1,4}$/;
 
 
     if(!input.name){
@@ -34,32 +33,29 @@ function validate(input){
     else if(input.types[0] === !noEmpty && input.types[1].length > 0){
         errors.types = "Primary type goes first";
     }
-    else if(!input.hp){
-        errors.hp = 'The HP is required';
-    }
-    else if(!noEmpty.test(input.hp)){
-        errors.hp = 'The HP cannot start with a blank space';
-    }
-    else if(!validateLength.test(input.hp)){
-        errors.hp = 'The HP must be between 1 and 4 characters long';
-    }
     else if(!input.attack){
         errors.attack = 'The attack is required';
     }
     else if(!noEmpty.test(input.attack)){
         errors.attack = 'The attack cannot start with a blank space';
     }
-    else if(!validateLength.test(input.attack)){
-        errors.attack = 'The attack must be between 1 and 4 characters long';
+    else if(input.attack < 1 || input.attack > 9999){
+        errors.attack = 'attack must be between 1 and 9999';
     }
-    else if(!input.defense){
-        errors.defense = 'The defense is required';
+    else if(!(/^\d*(\.\d{1})?\d{0,1}$/).test(input.attack)){
+        errors.attack = 'attack must have only 2 decimal places'
     }
-    else if(!noEmpty.test(input.defense)){
-        errors.defense = 'The defense cannot start with a blank space';
+    else if(!input.hp){
+        errors.hp = 'The HP is required';
     }
-    else if(!validateLength.test(input.defense)){
-        errors.defense = 'The defense must be between 1 and 4 characters long';
+    else if(!noEmpty.test(input.hp)){
+        errors.hp = 'The HP cannot start with a blank space';
+    }
+    else if(input.hp < 1 || input.hp > 9999){
+        errors.hp = 'HP must be between 1 and 9999';
+    }
+    else if(!(/^\d*(\.\d{1})?\d{0,1}$/).test(input.hp)){
+        errors.hp = 'HP must have only 2 decimal places'
     }
     else if(!input.speed){
         errors.speed = 'The speed is required';
@@ -67,8 +63,23 @@ function validate(input){
     else if(!noEmpty.test(input.speed)){
         errors.speed = 'The speed cannot start with a blank space';
     }
-    else if(!validateLength.test(input.speed)){
-        errors.speed = 'The speed must be between 1 and 4 characters long';
+    else if(input.speed < 1 || input.speed > 9999){
+        errors.speed = 'speed must be between 1 and 9999';
+    }
+    else if(!(/^\d*(\.\d{1})?\d{0,1}$/).test(input.speed)){
+        errors.speed = 'speed must have only 2 decimal places'
+    }
+    else if(!input.defense){
+        errors.defense = 'The defense is required';
+    }
+    else if(!noEmpty.test(input.defense)){
+        errors.defense = 'The defense cannot start with a blank space';
+    }
+    else if(input.defense < 1 || input.defense > 9999){
+        errors.defense = 'defense must be between 1 and 9999';
+    }
+    else if(!(/^\d*(\.\d{1})?\d{0,1}$/).test(input.defense)){
+        errors.defense = 'defense must have only 2 decimal places'
     }
     else if(!input.height){
         errors.height = 'The height is required';
@@ -76,18 +87,23 @@ function validate(input){
     else if(!noEmpty.test(input.height)){
         errors.height = 'The height cannot start with a blank space';
     }
-    else if(!validateLength.test(input.height)){
-        errors.height = 'The height must be between 1 and 4 characters long';
+    else if(input.height < 1 || input.height > 9999){
+        errors.height = 'height must be between 1 and 9999';
     }
-
+    else if(!(/^\d*(\.\d{1})?\d{0,1}$/).test(input.height)){
+        errors.height = 'height must have only 2 decimal places'
+    }
     else if(!input.weight){
         errors.weight = 'The weight is required';
     }
     else if(!noEmpty.test(input.weight)){
         errors.weight = 'The weight cannot start with a blank space';
     }
-    else if(!validateLength.test(input.weight)){
-        errors.weight = 'The weight must be between 1 and 4 characters long';
+    else if(input.weight < 1 || input.weight > 9999){
+        errors.weight = 'weight must be between 1 and 9999';
+    }
+    else if(!(/^\d*(\.\d{1})?\d{0,1}$/).test(input.weight)){
+        errors.weight = 'weight must have only 2 decimal places'
     }
     return errors;
 }
@@ -96,9 +112,6 @@ function validate(input){
 export default function Form(){
     const dispatch = useDispatch();
     const allTypes = useSelector(state => state.types);
-    // let allPokemons = useSelector(state => state.pokemons);
-    // allPokemons = (allPokemons.map((e, i) => e.platforms)).join(',').split(',');
-    // allPokemons = [...new Set(allPokemons)].map((e,i) => ({'name':e, 'id':i}))
     
     const [errors, setErrors] = useState({});
     const history = useHistory();
@@ -233,7 +246,7 @@ export default function Form(){
                 <div>
                     <label className='lattack'>Attack: </label>
                     <input
-                        type="text"
+                        type="number"
                         name="attack"
                         value={input.attack}
                         onChange={e => handleChange(e)}
@@ -244,7 +257,7 @@ export default function Form(){
                 <div>
                     <label className='lhp'>HP: </label>
                     <input
-                        type="text"
+                        type="number"
                         name="hp"
                         value={input.hp}
                         onChange={e => handleChange(e)}
@@ -256,7 +269,7 @@ export default function Form(){
                 <div>
                     <label className='lspeed'>Speed: </label>
                     <input
-                        type="text"
+                        type="number"
                         name="speed"
                         value={input.speed}
                         onChange={e => handleChange(e)}
@@ -267,7 +280,7 @@ export default function Form(){
                 <div>
                     <label className='ldefense'>Defense: </label>
                     <input
-                        type="text"
+                        type="number"
                         name="defense"
                         value={input.defense}
                         onChange={e => handleChange(e)}
@@ -278,7 +291,7 @@ export default function Form(){
                 <div>
                     <label className='lheight'>Height: </label>
                     <input
-                        type="text"
+                        type="number"
                         name="height"
                         value={input.height}
                         onChange={e => handleChange(e)}
@@ -289,7 +302,7 @@ export default function Form(){
                 <div>
                     <label className='lweight'>Weight: </label>
                     <input
-                        type="text"
+                        type="number"
                         name="weight"
                         value={input.weight}
                         onChange={e => handleChange(e)}

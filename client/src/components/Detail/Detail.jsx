@@ -48,7 +48,7 @@ export default function Detail(){
             </div>
             <h2>HP: {hp}</h2>
             <h2>Attack: {attack}</h2>
-            <h2>Defense: {defense}</h2> 
+            <h2>Defense: {defense}</h2>
             <h2>Speed: {speed}</h2>
             <h2>height: {height}</h2> 
             <h2>weight: {weight}</h2> 

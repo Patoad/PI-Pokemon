@@ -1,4 +1,4 @@
-.h1{
+.dexhome{
     font-size: 60px;
     color: rgb(255, 255, 255);
     margin-left: -45px;
@@ -8,7 +8,7 @@
     text-shadow: 0 0 0.2em rgb(255, 255, 255), 0 0 0.6em rgb(0, 0, 0);
 }
 
-.h1:hover{
+.dexhome:hover{
     cursor: default;
     color: rgb(255, 255, 255);
     text-shadow: 0 0 0.2em rgb(255, 255, 255), 0 0 0.6em rgb(0, 0, 0);

@@ -5,30 +5,6 @@ const { Pokemon, Types } = require("../db");
 const axios = require("axios");
 const url = `https://pokeapi.co/api/v2/pokemon`;
 
-// const getApiInfo = async () => {
-//     const pokeRequest1 = await axios.get(url);
-//     const pokeRequest2 = await axios.get(pokeRequest1.data.next);
-//     const allRequest = pokeRequest1.data.results.concat(
-//       pokeRequest2.data.results
-//     );
-//     const promises = allRequest.map((e) => axios.get(e.url));
-//     const allData = await Promise.all(promises);
-//     return allData.map((e) => {
-//       return {
-//         id: e.data.id,
-//         name: e.data.name,
-//         hp: e.data.stats[0]["base_stat"],
-//         attack: e.data.stats[1]["base_stat"],
-//         defense: e.data.stats[2]["base_stat"],
-//         speed: e.data.stats[5]["base_stat"],
-//         height: e.data.height,
-//         weight: e.data.weight,
-//         image: e.data.sprites.other.home.front_default,
-//         types: e.data.types.map((e) => e.type.name),
-//         created: false,
-//       };
-//     });
-//   };
 
 const getApiInfo = async () => {
   try {
@@ -113,118 +89,41 @@ const getPokemonByIdApi = async (id) => {
   return pokemonData;
 };
 
-// const getPokemonByNameApi = async (name) => {
-//     try {
-//         const apiNames = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-//         const apiNamesData = apiNames.data.map(p => {
-//             return {
-//                 id: p.id,
-//                 name: p.name,
-//                 image: p.sprites.other.home.front_default,
-//                 types: p.types.map(p => p.name),
-//             }
-//         });
-//         let array = [];
-//         if(apiNamesData.length > 12){
-//             for(let i = 0; i <= 11; i++){
-//                 array.push(apiNamesData[i]);
-//             }
-//             return array;
-//         }
-//         return apiNamesData;
-//     }catch(e){
-//         console.log(e);
-//     }
-// };
-
-//         const apiNamesData = apiNames.data.results.map(e => {
-//             return {
-//                 id: e.id,
-//                 name: e.name,
-//                 image: e.background_image,
-//                 types: e.types.map(e => e.name)
-//             }
-//         });
-//         let array = [];
-//         if(apiNamesData.length > 15){
-//             for(let i = 0; i <= 14; i++){
-//                 array.push(apiNamesData[i]);
-//             }
-//             return array;
-//         }
-//         return apiNamesData;
-//     }catch(e){
-//         console.log(e);
-//     }
-// };
-
-const getPokemonByNameBd = async (name) => {
+const getApiName = async (name) => {
   try {
-    const pokemons = await Pokemon.findAll({
-      where: {
-        name: { name },
-      },
-      include: [
-        {
-          model: Types,
-          attributes: ["name"],
-          through: {
-            attributes: [],
-          },
-        },
-      ],
-      attributes: ["id", "name", "image"],
-    });
-    return pokemons;
+      const namesApi = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+      const results = namesApi.data;
+      const pokemonInfo = {
+          id: results.id,
+          name: results.name,
+          types: results.types.map((t) => t.type.name),
+          image: results.sprites.other.home.front_default,
+      };
+      return pokemonInfo;
   } catch (e) {
-    console.log(e);
+      if (e.status === 404) return null;
   }
 };
-
-// const getByNameTotal = async (name) => {
-//     try{
-//         const apiName = await getPokemonByNameApi(name);
-//         const dbName = await getPokemonByNameBd(name);
-//         const totalNames = apiName.concat(dbName);
-//         return totalNames;
-//     }catch(e){
-//         console.log(e)
-//     }
-// }
-
 //-------------------------------------------------------------------------------------------------------
 
 router.get("/", async (req, res) => {
   const name = req.query.name;
-  const pokemons = await getAllPokemons();
-  // console.log("Pokemons--------: " + pokemons);
   if (name) {
-    const pokemonsName = await pokemons.filter(
-      (e) => e.name.toLowerCase() === name
-    );
-    pokemonsName.length
-      ? res.status(200).send(pokemonsName)
-      : res
-          .status(404)
-          .send("The pokemon you're looking for does not exist... yet");
+      const pokemonName = await getApiName(name.toLowerCase());
+      if (pokemonName) {
+          return res.status(200).send([pokemonName]);
+      } else {
+          const pokemonsDb = await getDbInfo();
+          const pokemon = pokemonsDb.filter(e => e.name.toLowerCase() == name.toLowerCase());
+          return pokemon.length
+          ? res.status(200).send(pokemon)
+          : res.status(404).send("Pokemon not found");
+      }
   } else {
-    res.status(200).send(pokemons);
+      const pokemonsTotal = await getAllPokemons();
+      return res.status(200).send(pokemonsTotal);
   }
 });
-
-// router.get('/', async (req, res) => {
-//     const name = req.query.name;
-//     const pokemonsAll = await getAllPokemons();
-//     const pokemonsByName = await getByNameTotal(name);
-//     if (name) {
-//         const pokemonsName = await pokemonsByName.filter(p => p.name.toLowerCase().includes(name.toLowerCase()));
-//         pokemonsName.length?
-//             res.status(200).send(pokemonsName) :
-//             res.status(404).send("The pokemon you're looking for does not exist... yet");
-//     }else{
-//         res.status(200).send(pokemonsAll)
-//     }
-// });
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
@@ -282,20 +181,6 @@ router.delete("/:id", async (req, res, next) => {
     res.send("Pokemon information has been deleted");
   } catch (error) {
     next(error);
-  }
-});
-
-router.put("/:id", async (req, res) => {
-  const { id } = req.params;
-  const body = req.body;
-  try {
-    const updatePoke = await Recipe.update(body, {
-      where: { id: id },
-    });
-    console.log(updatePoke);
-    res.status(200).send(updatePoke);
-  } catch (error) {
-    res.status(400).send(error.message);
   }
 });
 

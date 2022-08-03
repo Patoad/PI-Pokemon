@@ -70,7 +70,7 @@ export default function rootReducer(state= initialState, action){
 
         case "ORDER_BY_ATTACK":
             const all = [...state.pokemons]
-            const filterByAttack = all.sort((a,b) => {
+            const orderByAttack = all.sort((a,b) => {
                 if(a.attack < b.attack){
                     return action.payload === 'Asc' ? -1 : 1
                 }
@@ -80,54 +80,9 @@ export default function rootReducer(state= initialState, action){
             })
             return{
                 ...state,
-                pokemons: action.payload === 'All' ? state.allPokemons : filterByAttack
+                pokemons: action.payload === 'All' ? state.allPokemons : orderByAttack
             }
 
-        case "ORDER_BY_DEFENSE":
-            const allP = [...state.pokemons]
-            const filterByDefense = allP.sort((a,b) => {
-                if(a.defense < b.defense){
-                    return action.payload === 'Asc' ? -1 : 1
-                }
-                if(a.defense > b.defense){
-                    return action.payload === 'Desc' ? -1 : 1
-                }return 0
-            })
-            return{
-                ...state,
-                pokemons: action.payload === 'All' ? state.allPokemons : filterByDefense
-            }
-
-            case "ORDER_BY_HP":
-                const everyPokemon = [...state.pokemons]
-                const filterByHP = everyPokemon.sort((a,b) => {
-                    if(a.hp < b.hp){
-                        return action.payload === 'Asc' ? -1 : 1
-                    }
-                    if(a.hp > b.hp){
-                        return action.payload === 'Desc' ? -1 : 1
-                    }return 0
-                })
-                return{
-                    ...state,
-                    pokemons: action.payload === 'All' ? state.allPokemons : filterByHP
-                }
-
-                case "ORDER_BY_SPEED":
-                    const everyPoke = [...state.pokemons]
-                    const filterBySpeed = everyPoke.sort((a,b) => {
-                        if(a.speed < b.speed){
-                            return action.payload === 'Asc' ? -1 : 1
-                        }
-                        if(a.speed > b.speed){
-                            return action.payload === 'Desc' ? -1 : 1
-                        }return 0
-                    })
-                    return{
-                        ...state,
-                        pokemons: action.payload === 'All' ? state.allPokemons : filterBySpeed
-                    }
-            
         case "ORDER_BY_CREATION":
             let filter;
             if(state.filters.length === 0){
@@ -145,12 +100,13 @@ export default function rootReducer(state= initialState, action){
                     pokemons: action.payload === 'all' ? allPokes : filter
                 }
             }return
+
         case "POST_POKEMON":
             return {
                 ...state
             };
 
-            case "RESET_POKEMONS":
+        case "RESET_POKEMONS":
             return{
                 ...state,
                 pokemons: action.payload,
@@ -163,13 +119,6 @@ export default function rootReducer(state= initialState, action){
                 pokemons: state.pokemons.filter(e => e.id !== action.payload),
                 allPokemons: state.allPokemons.filter(e => e.id !== action.payload)
             }
-
-        // case "UPDATE_POKEMON":
-        //     return {
-        //         ...state,
-        //         pokemons: state.pokemons.filter(e => e.id !== action.payload),
-        //         allPokemons: state.allPokemons.filter(e => e.id !== action.payload)
-        //     }
 
         default:
             return state;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getPokemonByNames } from '../../../Actions/index';
 import { useDispatch } from 'react-redux';
-import './SearchBar.css';
+// import './SearchBar.css';
 
 
 export default function SearchBar(){  
@@ -28,7 +28,7 @@ export default function SearchBar(){
     return (
         <div>
             <div>
-                <h1 className='h1'>Pokemon's Home</h1>
+                <h1 className='dexhome'>Pokemon's Home</h1>
                 <input
                     type="text"
                     placeholder="Pokemon search..."

@@ -6,14 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import AlphabeticalOrder from './NavBar/Filters/AlphabeticalOrder';
 import ByAttack from './NavBar/Filters/ByAttack';
 import ByCreation from './NavBar/Filters/ByCreation';
-import ByDefense from './NavBar/Filters/ByDefense';
-import ByHP from './NavBar/Filters/ByHP';
-import BySpeed from './NavBar/Filters/BySpeed';
 import ByTypes from './NavBar/Filters/ByTypes';
 import SearchBar from './NavBar/SearchBar';
 import { getPokemons, getTypes, reset_pokemons } from '../../Actions';
 import Paginate from './Paginate/Paginate';
-
 
 export default function Home(){
     const allPokemons = useSelector(state => state.pokemons);
@@ -34,7 +30,6 @@ export default function Home(){
     if (currentPage > Math.ceil(allPokemons.length / pokemonsPerPage) && currentPage !== 1) {
         setCurrentPage(1);
     }
-
 
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -69,9 +64,6 @@ export default function Home(){
                 <ByCreation/>
                 <AlphabeticalOrder/>
                 <ByAttack/>
-                <ByDefense/>
-                <ByHP/>
-                <BySpeed/>
             </div>
             <div className='cards'>
             <Cards allPokemons={currentPokemons}/>
