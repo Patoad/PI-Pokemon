@@ -83,6 +83,15 @@ export default function rootReducer(state= initialState, action){
                 pokemons: action.payload === 'All' ? state.allPokemons : orderByAttack
             }
 
+            case "FILTER_BY_ATTACK":
+                const allP = [...state.pokemons]
+                const pokepoke = allP.filter((a) => a.attack > 89).slice(0, 5)
+                
+                return {
+                    ...state,
+                    pokemons: action.payload === "All" ? state.allPokemons : pokepoke
+                }
+
         case "ORDER_BY_CREATION":
             let filter;
             if(state.filters.length === 0){

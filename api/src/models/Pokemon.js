@@ -56,3 +56,9 @@ module.exports = (sequelize) => {
     timestamps: false
   });
 };
+
+// métodos de Array
+// métodos de objetos
+// react
+// bases de redux
+// sequelize

@@ -10,6 +10,7 @@ import ByTypes from './NavBar/Filters/ByTypes';
 import SearchBar from './NavBar/SearchBar';
 import { getPokemons, getTypes, reset_pokemons } from '../../Actions';
 import Paginate from './Paginate/Paginate';
+import FilterByAttack from './NavBar/Filters/FilterByAttack';
 
 export default function Home(){
     const allPokemons = useSelector(state => state.pokemons);
@@ -64,6 +65,7 @@ export default function Home(){
                 <ByCreation/>
                 <AlphabeticalOrder/>
                 <ByAttack/>
+                <FilterByAttack/>
             </div>
             <div className='cards'>
             <Cards allPokemons={currentPokemons}/>

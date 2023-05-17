@@ -85,6 +85,13 @@ export function orderByAttack(payload){
     }
 };
 
+export function filter(payload){
+    return {
+        type: "FILTER_BY_ATTACK",
+        payload
+    }
+};
+
 
 export function createPokemon(pokemon){
     return async function(){
